@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AiPlayerEnterAreaDetector : MonoBehaviour
+{
+    [field: SerializeField]
+    public bool PlayerInArea { get; private set; }
+    public Transform Player { get; private set; }
+
+    public EnemyCombat enemyCombat;
+    public EnemyPatrol enemyPatrol;
+    public PlayerBehaviour playerHealth;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("Player detected");
+            PlayerInArea = true;
+            Player = collision.gameObject.transform;
+            collision.GetComponent<PlayerBehaviour>().PlayerTakeDmg(0);
+            collision.GetComponent<EnemyCombat>().UpdateActionAttack();
+            // disable enemypatrol
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            PlayerInArea = false;
+            Player = null;
+
+            // disable enemy combat 
+
+
+            // enable Patrol
+            enemyPatrol.UpdateAction();
+            
+        }
+    }
+}
