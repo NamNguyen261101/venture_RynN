@@ -7293,6 +7293,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin
       objectReference: {fileID: 0}
+    - target: {fileID: 2303526114220148187, guid: 2f47c187397ff3749b5f142dcc8b816e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2303526114220148188, guid: 2f47c187397ff3749b5f142dcc8b816e, type: 3}
       propertyPath: m_RootOrder
       value: 0
