@@ -35,20 +35,16 @@ public class GoblinAttack : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         attackTimeCounter = timeBtwAttacks;
         instance = this;
-        /*if (isActive)
-        {
-            DisableActionAttack();
-        }*/
+        isActive = false;
     }
 
-    
+
     void Update()
     {
         if (!isActive)
-        {
-            DistanceToPlayer();
-        }
-       
+            return;
+        DistanceToPlayer();
+
     }
     public void UpdateActionAttack()
     {
@@ -61,14 +57,14 @@ public class GoblinAttack : MonoBehaviour
     private void DistanceToPlayer()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        
+
         if (distanceToPlayer > agroRange)
         {
             // (Move)
             StopChasingPlayer();
             StopAttack();
-        } 
-        else if (distanceToPlayer < agroRange) 
+        }
+        else if (distanceToPlayer < agroRange)
         {
             // Stop chasing player
             ChasePlayer();
@@ -88,12 +84,12 @@ public class GoblinAttack : MonoBehaviour
         {
             // enemy is the left side of the player, move right
             rb.velocity = new Vector2(moveSpeed, 0);
-            transform.localScale = new Vector2((float) 0.3, (float)0.3);
-        } 
+            transform.localScale = new Vector2((float)0.3, (float)0.3);
+        }
         else
         {
             rb.velocity = new Vector2(-moveSpeed, 0);
-            transform.localScale = new Vector2((float) - 0.3, (float)0.3); ;
+            transform.localScale = new Vector2((float)-0.3, (float)0.3); ;
         }
     }
 
@@ -120,7 +116,7 @@ public class GoblinAttack : MonoBehaviour
     }
     // Stop Attack
     private void StopAttack()
-    { 
+    {
         animator.SetBool("isAttack", false);
     }
 
