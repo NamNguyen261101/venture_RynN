@@ -34,28 +34,21 @@ public class MonsterMoving : MonoBehaviour
         aliveRb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         instance = this;
-        // isActive = true;
-        UpdateActionPatrol();
-            ApplingPatrol();
-       /* if (isActive == true)
-        {
-            ApplingPatrol();
-        }*/
+        isActive = true;
     }
 
 
     public void Update()
     {
-       if (!isActive)
-        {
-            ApplingPatrol();
-        }
+        if (!isActive)
+            return;
+        ApplingPatrol();
     }
 
     public void UpdateActionPatrol()
     {
         isActive = true;
-       
+
     }
     public void DisableActionPatrol()
     {
@@ -88,7 +81,7 @@ public class MonsterMoving : MonoBehaviour
         anim.SetBool("isMoving", true);
         float velocityX = moveSpeed;
 
-        if (facingDirection == LEFT) 
+        if (facingDirection == LEFT)
         {
             velocityX = -moveSpeed;
         }
@@ -99,7 +92,7 @@ public class MonsterMoving : MonoBehaviour
     private void ChangingDirection(string newDirection)
     {
         anim.SetBool("isMoving", false);
-        
+
         Vector3 newScale = baseScale;
         if (newDirection == LEFT)
         {
@@ -110,7 +103,7 @@ public class MonsterMoving : MonoBehaviour
             newScale.x = baseScale.x;
         }
         transform.localScale = newScale;
-      
+
         facingDirection = newDirection;
     }
 
