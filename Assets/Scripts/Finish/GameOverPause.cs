@@ -50,7 +50,8 @@ public class GameOverPause : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("Level1");
+        //SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
 
     }

@@ -152,9 +152,10 @@ public class PlayerController : MonoBehaviour
         {
             // Debug.Log("Facing oke");
             isFacingRight = !isFacingRight;
-            Vector3 theScale = transform.localScale;
+            /*Vector3 theScale = transform.localScale;
             theScale.x *= -1;
-            transform.localScale = theScale;
+            transform.localScale = theScale;*/
+            transform.Rotate(0f, 180f, 0f);
         }
     }
     // Jump

@@ -24,32 +24,53 @@ public class MonsterMoving : MonoBehaviour
             baseScale;
     const string RIGHT = "right";
     const string LEFT = "left";
-    public bool Active{ get; set; }
 
-    [SerializeField] private float idleDuration; // how much time when he reach to the edge
-    private float idleTimer;
+    private bool isActive = false;
+    private MonsterMoving instance;
     void Start()
     {
         facingDirection = RIGHT;
         baseScale = transform.localScale;
-
         aliveRb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
-
+        instance = this;
+        // isActive = true;
+        UpdateActionPatrol();
+            ApplingPatrol();
+       /* if (isActive == true)
+        {
+            ApplingPatrol();
+        }*/
     }
 
 
-    public void FixedUpdate()
+    public void Update()
     {
-        if (!Active)
-            return;
+       if (!isActive)
+        {
+            ApplingPatrol();
+        }
+    }
 
+    public void UpdateActionPatrol()
+    {
+        isActive = true;
+       
+    }
+    public void DisableActionPatrol()
+    {
+        isActive = false;
+    }
+
+
+    // Appling Into Patrol
+    private void ApplingPatrol()
+    {
         GoblinApplyMovement();
 
         if (IsHittingWall() || IsNearEdge())
         {
-            // Debug.Log("touch");
+            Debug.Log("touch");
             if (facingDirection == LEFT)
             {
                 ChangingDirection(RIGHT);
@@ -66,8 +87,8 @@ public class MonsterMoving : MonoBehaviour
     {
         anim.SetBool("isMoving", true);
         float velocityX = moveSpeed;
-        idleTimer = 0;
-        if (facingDirection == LEFT) // left side
+
+        if (facingDirection == LEFT) 
         {
             velocityX = -moveSpeed;
         }
@@ -78,7 +99,7 @@ public class MonsterMoving : MonoBehaviour
     private void ChangingDirection(string newDirection)
     {
         anim.SetBool("isMoving", false);
-        idleTimer += Time.deltaTime;
+        
         Vector3 newScale = baseScale;
         if (newDirection == LEFT)
         {
@@ -89,14 +110,11 @@ public class MonsterMoving : MonoBehaviour
             newScale.x = baseScale.x;
         }
         transform.localScale = newScale;
-        /*if (idleTimer> idleDuration)
-        {
-            facingDirection = newDirection;
-        }*/
+      
         facingDirection = newDirection;
-    
     }
 
+    // Check if hitting wall
     private bool IsHittingWall()
     {
         bool isHit = false;
@@ -130,6 +148,7 @@ public class MonsterMoving : MonoBehaviour
         return isHit;
     }
 
+    // Check if nearEdge
     private bool IsNearEdge()
     {
         bool isHitEdge = true;

@@ -72,11 +72,13 @@ public class EnemyFollow : MonoBehaviour
         // attack
         if (attackCoolDown > Time.time)
         {
-            // attackCoolDown = 0;
-            attackCoolDown = Time.time + coolDownTimer;
+            
+            // attackCoolDown = Time.time + coolDownTimer;
+            attackCoolDown = coolDownTimer - Time.time;
             EnemyAttack();
         }
-       
+        
+
     }
 
     private void EnemyAttack()

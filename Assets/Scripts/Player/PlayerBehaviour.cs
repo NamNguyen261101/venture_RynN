@@ -10,8 +10,10 @@ public class PlayerBehaviour : MonoBehaviour
     private Animator anim;
     private bool dead;
 
-    [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private GameObject gameOverText;
+    [SerializeField] private GameObject gameOverScreen = null;
+    [SerializeField] private GameObject gameOverText = null;
+    [SerializeField] private GameObject finishScreen = null;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -31,25 +33,32 @@ public class PlayerBehaviour : MonoBehaviour
             gameOverScreen.SetActive(true);
             gameOverText.SetActive(true);
             Time.timeScale = 0;
-       } 
+       } else 
+       { 
+            if (gameOverScreen.activeInHierarchy == true || finishScreen.activeInHierarchy == true)
+            {
+                Time.timeScale = 0;
+            } else
+            {
+                Time.timeScale = 1;
+            }
+       }
     }
 
     public void PlayerTakeDmg(float dmg)
     {
 
-        // PermanentStats.persist.currentHealth -= dmg;
-        currentHealth -= dmg;
-        // if (PermanentStats.persist.currentHealth > 0 )
-        if (currentHealth > 0)
+        PermanentStats.persist.currentHealth -= dmg;
+        //currentHealth -= dmg;
+        if (PermanentStats.persist.currentHealth > 0 )
+        // if (currentHealth > 0)
         {
             // player hurt
             anim.SetTrigger("hurt");
-            healthBar.SetHealth(currentHealth);
+            healthBar.SetHealth(PermanentStats.persist.currentHealth);
         }
-        else if (currentHealth <= 0)
+        else if (PermanentStats.persist.currentHealth <= 0)
         {
-
-            
             Die();
         } 
   
@@ -58,7 +67,7 @@ public class PlayerBehaviour : MonoBehaviour
     public void PlayerHeal(float heal)
     {
         PermanentStats.persist.currentHealth += heal;
-        healthBar.SetHealth(currentHealth);
+        healthBar.SetHealth(PermanentStats.persist.currentHealth);
     }
 
     private void Die()
@@ -71,4 +80,11 @@ public class PlayerBehaviour : MonoBehaviour
         gameOverText.SetActive(true);
     }
 
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("DeathPlace"))
+        {
+            Die();
+        }
+    }*/
 }

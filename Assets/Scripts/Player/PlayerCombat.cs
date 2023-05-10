@@ -16,8 +16,10 @@ public class PlayerCombat : MonoBehaviour
 
     public float attackDamage = 2;
 
+    [SerializeField] private ProjectileBehaviour projectileBehaviour;
+    [SerializeField] private Transform lauchOffset;
 
-
+    private float timer;
 
     private void Start()
     {
@@ -29,6 +31,13 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Attack();
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+             
+            // Debug.Log("Fireball");
+            Instantiate(projectileBehaviour, lauchOffset.position, transform.rotation);
         }
     }
 
@@ -45,11 +54,10 @@ public class PlayerCombat : MonoBehaviour
         {
             Debug.Log("hit enemy" + enemy.name);
             enemy.GetComponent<EnemyBehaviourAction>().TakeDamaged(attackDamage);
-            
         }
     }
 
-
+    
 
     private void OnDrawGizmosSelected()
     {

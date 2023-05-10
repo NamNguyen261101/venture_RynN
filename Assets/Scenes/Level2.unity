@@ -177,10 +177,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 705872429}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: Enemy
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -211,9 +211,9 @@ GameObject:
   - component: {fileID: 722570765}
   - component: {fileID: 722570764}
   - component: {fileID: 722570763}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: idle sheet-Sheet_0
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,7 +226,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722570761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.367, y: -1.083, z: 0}
+  m_LocalPosition: {x: 11.59, y: -1.2, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -416,7 +416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1052332364}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 1099528952}
   m_Layer: 6
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -673,9 +673,9 @@ GameObject:
   - component: {fileID: 2028301497}
   - component: {fileID: 2028301498}
   - component: {fileID: 2028301499}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GoblinScout-Sheet_0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -756,8 +756,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028301492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.53, y: -0.87, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -1.86, y: -1.32, z: 0}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 705872429}
@@ -815,16 +815,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2028301492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68d23ebdecb7cc046ab030f674b16f02, type: 3}
+  m_Script: {fileID: 11500000, guid: 175a7e07b93e8e943841353fc4d4366a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 722570762}
-  minimumDistance: 1
-  moveSpeed: 2
-  attackPoint: {fileID: 705872429}
-  attackRange: 0.5
-  attackDamage: 1
-  attackCoolDown: 1
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 8
+  castPos: {fileID: 705872429}
+  moveSpeed: 3
+  baseCastPosDistance: 0.2

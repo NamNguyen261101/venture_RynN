@@ -43,8 +43,7 @@ public class EnemyPatrol : MonoBehaviour
         }   
     }
     public void UpdateAction()
-    {
-        
+    {  
         isActive = true;
     }
 
@@ -83,20 +82,19 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.GetComponent<PlayerBehaviour>().PlayerTakeDmg(1);
-            // gameObject.SetActive(false);
+           
         }
-    }
-
+    }*/
 
     // Change AI to allow enemy to chance direction if colliders with anything that is not ground
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Ground") || !collision.gameObject.CompareTag("Player"))
+        if (!collision.gameObject.CompareTag("Ground")) // || !collision.gameObject.CompareTag("Player")
         {
             if (movingLeft)
             {

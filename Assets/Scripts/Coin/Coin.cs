@@ -7,12 +7,17 @@ public class Coin : MonoBehaviour
 {
     private int coinValue = 1;
 
+   
+    private void Start()
+    {
+        
+    }
     private void OnTriggerEnter2D(Collider2D player)
     {
         if (player.gameObject.CompareTag("Player"))
         {
-            ScoreCoinOnBoard.instance.ChangeScore(coinValue);
 
+            ScoreCoinOnBoard.instance.ChangeScore(coinValue);
         }
     }
 }

@@ -30,7 +30,8 @@ public class FinishLevelBtn : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("Level1");
+        /// SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Quit()
