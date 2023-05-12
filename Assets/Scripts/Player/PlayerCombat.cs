@@ -33,7 +33,7 @@ public class PlayerCombat : MonoBehaviour
             Attack();
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
              
             // Debug.Log("Fireball");
